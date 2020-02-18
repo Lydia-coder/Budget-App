@@ -5,19 +5,29 @@ const bugetController = (function() {})();
 
 // UI CONTROLLER
 const UIController = (function() {
+  const DOMstrings = {
+    inputType: ".add__type",
+    inputDescription: ".add__description",
+    inputValue: ".add__value",
+    inputButton: ".add__btn"
+  };
   return {
     getInput: function() {
       return {
-        type: document.querySelector(".add__type").value, // will be either inc or exp
-        description: document.querySelector(".add__description").value,
-        value: document.querySelector(".add__value").value
+        type: document.querySelector(DOMstrings.inputType).value, // will be either inc or exp
+        description: document.querySelector(DOMstrings.inputDescription).value,
+        value: document.querySelector(DOMstrings.inputValue).value
       };
+    },
+    getDOMstrings: function() {
+      return DOMstrings;
     }
   };
 })();
 
 //GLOBAL APP CONTROLLER
 const controller = (function(bugetCtrl, UICtrl) {
+  const DOM = UICtrl.getDOMstrings();
   const ctrlAddItem = function() {
     // 1.  get input data
     const input = UICtrl.getInput();
@@ -28,7 +38,9 @@ const controller = (function(bugetCtrl, UICtrl) {
     console.log(input);
   };
 
-  document.querySelector(".add__btn").addEventListener("click", ctrlAddItem);
+  document
+    .querySelector(DOM.inputButton)
+    .addEventListener("click", ctrlAddItem);
 
   document.addEventListener("keypress", function(event) {
     if (event.keyCode === 13 || event.which === 13) {
