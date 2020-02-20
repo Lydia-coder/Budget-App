@@ -171,9 +171,8 @@ const UIController = (function() {
     dateLabel: ".budget__title--month"
   };
 
+  let numSplit, int, dec, type, num;
   const formatNumber = function(num, type) {
-    var numSplit, int, dec, type, num;
-
     /*
           + or - before number
           exactly 2 decimal points
